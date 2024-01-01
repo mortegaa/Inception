@@ -1,0 +1,54 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    docker-compose.yml                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mortega- <mortega-@student.42Madrid.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/31 23:22:29 by mortega-          #+#    #+#              #
+#    Updated: 2024/01/01 00:10:35 by mortega-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+version: '3.3'
+  
+services:
+
+  nginx:
+
+    build: ./Nginx
+
+    volumes:
+
+    restart: always
+
+    environment:
+
+
+  wordpress:
+
+    build: ./WordPress
+
+    volumes:
+
+    restart:
+
+    environment:
+
+
+  db:
+
+    build: ./MariaDB
+
+    volumes:
+
+    restart:
+
+    environment:
+
+
+volumes:
+  db: {}
+  wordpress: {}
+
+
