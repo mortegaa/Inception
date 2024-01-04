@@ -6,7 +6,7 @@
 #    By: mortega- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:06:46 by mortega-          #+#    #+#              #
-#    Updated: 2023/12/29 16:50:01 by mortega-         ###   ########.fr        #
+#    Updated: 2024/01/03 13:28:50 by mortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,10 @@ RUN chmod 700 /etc/ssl/private \
 	-keyout /etc/ssl/private/nginx_server.key \
 	-out /etc/ssl/private/nginx_server.crt
 
-#RUN rm -f /var/www/html/index.nginx-debian.html
+#RUN rm -f /etc/nginx/nginx.conf
+RUN echo "127.0.0.1	DOMAIN_NAME" >> /etc/hosts;
 
-COPY srcs/nginx.conf /etc/nginx
+COPY srcs/nginx.conf /etc/nginx/
 
 CMD service nginx start
+	&& bash

@@ -6,7 +6,7 @@
 #    By: mortega- <mortega-@student.42Madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/31 22:51:42 by mortega-          #+#    #+#              #
-#    Updated: 2023/12/31 23:19:59 by mortega-         ###   ########.fr        #
+#    Updated: 2024/01/03 01:01:36 by mortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,42 +18,42 @@ help:
 	make -pRrq -f $(THIS_FILE) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 build:
-	docker-compose -f docker-compose.yml build $(c)
+	docker-compose -f/ srcs/docker-compose.yml build $(c)
 
 up:
-	docker-compose -f docker-compose.yml up -d $(c)
+	docker-compose -f srcs/docker-compose.yml up -d $(c)
 
 start:
-	docker-compose -f docker-compose.yml start $(c)
+	docker-compose -f srcs/docker-compose.yml start $(c)
 
 down:
-	docker-compose -f docker-compose.yml down $(c)
+	docker-compose -f srcs/docker-compose.yml down $(c)
 
 destroy:
-	docker-compose -f docker-compose.yml down -v $(c)
+	docker-compose -f srcs/docker-compose.yml down -v $(c)
 
 stop:
-	docker-compose -f docker-compose.yml stop $(c)
+	docker-compose -f srcs/docker-compose.yml stop $(c)
 
 restart:
-	docker-compose -f docker-compose.yml stop $(c)
-	docker-compose -f docker-compose.yml up -d $(c)
+	docker-compose -f srcs/docker-compose.yml stop $(c)
+	docker-compose -f srcs/docker-compose.yml up -d $(c)
 
 logs:
-	docker-compose -f docker-compose.yml logs --tail=100 -f $(c)
+	docker-compose -f srcs/docker-compose.yml logs --tail=100 -f $(c)
 
 logs-api:
-	docker-compose -f docker-compose.yml logs --tail=100 -f api
+	docker-compose -f srcs/docker-compose.yml logs --tail=100 -f api
 
 ps:
-	docker-compose -f docker-compose.yml ps
+	docker-compose -f srcs/docker-compose.yml ps
 
 login-timescale:
-	docker-compose -f docker-compose.yml exec timescale /bin/bash
+	docker-compose -f srcs/docker-compose.yml exec timescale /bin/bash
 
 login-api:
-	docker-compose -f docker-compose.yml logs exec api /bin/bash
+	docker-compose -f srcs/docker-compose.yml logs exec api /bin/bash
 
 db-shell:
-	docker-compose -f docker-compose.yml exec timescale psql - Upostgres
+	docker-compose -f srcs/docker-compose.yml exec timescale psql - Upostgres
 
