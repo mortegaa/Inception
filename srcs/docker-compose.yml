@@ -6,7 +6,7 @@
 #    By: mortega- <mortega-@student.42Madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/31 23:22:29 by mortega-          #+#    #+#              #
-#    Updated: 2024/01/03 13:33:38 by mortega-         ###   ########.fr        #
+#    Updated: 2024/01/05 19:39:32 by mortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ services:
     networks:
       - net
       - ext
-    environment: .env
+    env_file: .env
 
   wordpress:
     container_name: c_wordpress
@@ -41,10 +41,10 @@ services:
     restart: always
     ports:
       - "9000:9000"
-      - "3306:3306"
+        #- "3306:3306"
     networks:
       - net
-    environment: .env
+    env_file: .env
 
   db:
     container_name: c_mariadb
@@ -57,7 +57,7 @@ services:
       - "3306:3306"
     networks:
       - net
-    environment: .env
+    env_file: .env
 
 volumes:
   wp_data: {}

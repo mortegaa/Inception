@@ -6,7 +6,7 @@
 #    By: mortega- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:06:46 by mortega-          #+#    #+#              #
-#    Updated: 2024/01/03 13:28:50 by mortega-         ###   ########.fr        #
+#    Updated: 2024/01/05 15:47:25 by mortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ RUN chmod 700 /etc/ssl/private \
 	-out /etc/ssl/private/nginx_server.crt
 
 #RUN rm -f /etc/nginx/nginx.conf
-RUN echo "127.0.0.1	DOMAIN_NAME" >> /etc/hosts;
+RUN echo "127.0.0.1	$(DOMAIN_NAME)" >> /etc/hosts;
 
-COPY srcs/nginx.conf /etc/nginx/
+COPY conf/nginx.conf /etc/nginx/
 
-CMD service nginx start
+CMD service nginx start \
 	&& bash

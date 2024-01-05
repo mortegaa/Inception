@@ -6,7 +6,7 @@
 #    By: mortega- <mortega-@student.42Madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/31 22:51:42 by mortega-          #+#    #+#              #
-#    Updated: 2024/01/03 01:01:36 by mortega-         ###   ########.fr        #
+#    Updated: 2024/01/05 19:41:22 by mortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ help:
 	make -pRrq -f $(THIS_FILE) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 build:
-	docker-compose -f/ srcs/docker-compose.yml build $(c)
+	docker-compose -f srcs/docker-compose.yml build $(c)
 
 up:
 	docker-compose -f srcs/docker-compose.yml up -d $(c)
