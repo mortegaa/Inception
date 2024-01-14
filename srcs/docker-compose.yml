@@ -6,7 +6,7 @@
 #    By: mortega- <mortega-@student.42Madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/31 23:22:29 by mortega-          #+#    #+#              #
-#    Updated: 2024/01/05 19:39:32 by mortega-         ###   ########.fr        #
+#    Updated: 2024/01/03 13:33:38 by mortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,8 @@ services:
     init: true
     volumes:
       - wp_data:/home/mortega/data
-    restart: always
+    restart: on-failure
     ports:
-      - "9000:9000"
       - "80:80"
       - "443:443"
     networks:
@@ -38,10 +37,7 @@ services:
     init: true
     volumes:
       - wp_data:/home/mortega/data
-    restart: always
-    ports:
-      - "9000:9000"
-        #- "3306:3306"
+    restart: on-failure
     networks:
       - net
     env_file: .env
@@ -52,16 +48,14 @@ services:
     init: true
     volumes:
       - db_data:/home/mortega/data
-    restart: always
-    ports:
-      - "3306:3306"
+    restart: on-failure
     networks:
       - net
     env_file: .env
 
 volumes:
   wp_data: {}
-  de_data: {}
+  db_data: {}
 
 networks:
   net:

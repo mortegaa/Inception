@@ -28,10 +28,12 @@ RUN chmod 700 /etc/ssl/private \
 	-keyout /etc/ssl/private/nginx_server.key \
 	-out /etc/ssl/private/nginx_server.crt
 
-#RUN rm -f /etc/nginx/nginx.conf
+RUN rm -f /etc/nginx/nginx.conf
 RUN echo "127.0.0.1	$(DOMAIN_NAME)" >> /etc/hosts;
 
 COPY conf/nginx.conf /etc/nginx/
 
-CMD service nginx start \
-	&& bash
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+#CMD service nginx start \
+#	&& bash
