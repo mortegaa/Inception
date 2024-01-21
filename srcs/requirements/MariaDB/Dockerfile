@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:buster
+FROM debian:bullseye
 
 MAINTAINER mortega-
 
@@ -23,10 +23,8 @@ RUN apt-get -y update \
 
 RUN apt-get -y install mariadb-server;
 
-#COPY srcs/database.sql ./
-#COPY srcs/wordpress.sql ./
+COPY conf/database.sql /home
+COPY conf/wordpress.sql /home
+COPY tools/setup.sh /home/setup.sh
 
-CMD service mysql start \
-	#&& mysql -u root < ./wordpress.sql \
-	#&& mysql -u root < ./database.sql \
-	&& bash
+ENTRYPOINT ["bash", "/home/setup.sh"]

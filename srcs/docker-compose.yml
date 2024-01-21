@@ -15,7 +15,11 @@ version: '3.3'
 services:
   nginx:
     container_name: c_nginx
-    build: ./requirements/Nginx
+    build: ./requirements/nginx
+    expose:
+      - "9000"
+    depends_on:
+      - wordpress
     init: true
     volumes:
       - wp_data:/home/mortega/data
@@ -25,15 +29,16 @@ services:
       - "443:443"
     networks:
       - net
-      - ext
     env_file: .env
 
   wordpress:
     container_name: c_wordpress
-    build: ./requirements/WordPress
+    build: ./requirements/wordpress
+    expose:
+      - "9000"
+      - "3306"
     depends_on:
-      - nginx
-      - db
+      - mariadb
     init: true
     volumes:
       - wp_data:/home/mortega/data
@@ -42,9 +47,11 @@ services:
       - net
     env_file: .env
 
-  db:
+  mariadb:
     container_name: c_mariadb
-    build: ./requirements/MariaDB
+    build: ./requirements/mariadb
+    expose:
+      - "3306"
     init: true
     volumes:
       - db_data:/home/mortega/data
@@ -59,10 +66,6 @@ volumes:
 
 networks:
   net:
+    external: false
     driver: bridge
     name: net
-
-  ext:
-    external: true
-    driver: bridge
-    name: external_net

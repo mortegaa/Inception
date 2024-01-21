@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CREATE DATABASE IF NOT EXISTS `wordpress`;
-CREATE USER $(MYSQL_USER)@$(DOMAIN_NAME) IDENTIFIED BY $(MYSQL_PASSWORD);
-GRANT ALL PRIVILEGES ON *.* TO $(MYSQL_USER)@$(DOMAIN_NAME);
-FLUSH PRIVILEGES;
+ CREATE DATABASE IF NOT EXISTS `wordpress`;
+# CREATE USER mortega@localhost IDENTIFIED BY '${MYSQL_PASSWORD}';
+# GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_USER}'@'${DOMAIN_NAME}';
+# FLUSH PRIVILEGES;

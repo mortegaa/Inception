@@ -1,4 +1,4 @@
-REATE DATABASE IF NOT EXISTS `wordpress`;
+CREATE DATABASE IF NOT EXISTS `wordpress`;
 USE `wordpress`;
 -- MySQL dump 10.18  Distrib 10.3.27-MariaDB, for debian-linux-gnu (x86_64)
 --

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:buster
+FROM debian:bullseye
 
 MAINTAINER mortega-
 
@@ -25,15 +25,10 @@ RUN apt-get -y install nginx;
 
 RUN chmod 700 /etc/ssl/private \
 	&& openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=127.0.0.1" \
-	-keyout /etc/ssl/private/nginx_server.key \
-	-out /etc/ssl/private/nginx_server.crt
+	-keyout /etc/ssl/private/mortega.key \
+	-out /etc/ssl/private/mortega.crt
 
-RUN rm -f /etc/nginx/nginx.conf
-RUN echo "127.0.0.1	$(DOMAIN_NAME)" >> /etc/hosts;
+COPY conf/nginx.conf /etc/nginx/conf.d
+COPY conf/setup.sh /home
 
-COPY conf/nginx.conf /etc/nginx/
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
-
-#CMD service nginx start \
-#	&& bash
+ENTRYPOINT ["bash", "/home/setup.sh"]
